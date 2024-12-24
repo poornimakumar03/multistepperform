@@ -44,4 +44,6 @@
     font-size: 12px;
     margin-top: 5px;
   }
-  
+  .MuiStepLabel-label{
+    color: #fff !important;
+  }               

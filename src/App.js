@@ -6,9 +6,11 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import { Card,CardContent } from '@mui/material';
 import { useState } from 'react';
+import { withTheme } from '@emotion/react';
 
-const steps = ['Personal Details', 'Education Details', 'Course Details'];
+const steps = ['1', '2', '3'];
 
 export default function UserFormStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -176,6 +178,10 @@ export default function UserFormStepper() {
 
   const handleReset = () => {
     setActiveStep(0);
+    setPersonalDetails('');
+    setEducationDetails('');
+    setCourseDetails('');
+
   };
 
   const handlePersonalDetailsChange = (e) => {
@@ -195,36 +201,47 @@ export default function UserFormStepper() {
 
   return (
     <Box sx={{ 
+       background:'linear-gradient(90deg,#00b4f9,#7985ff)',
          display: 'flex', 
       justifyContent: 'center', 
          alignItems: 'center', 
       height: '100vh' 
     }}>
-      <Box sx={{ width: '50%' }}>
-            <Stepper activeStep={activeStep}>
+
+      <Box sx={{ width:'50%' }} >
+      <Stepper activeStep={activeStep} style={{paddingBottom:"20px",color:'#000 !important'}}>
           {steps.map((label, index) => {
               const stepProps = {};
             const labelProps = {};
-            if (isStepOptional(index)) {
-                   labelProps.optional = (
-                <Typography variant="caption">Optional</Typography>
-              );
-            }
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
             return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+              <Step key={label} {...stepProps} style={{color:'#000 !important'}}>
+                <StepLabel style={{color:'#000 !important'}} {...labelProps}></StepLabel>
               </Step>
             );
           })}
         </Stepper>
+      <Card sx={{ backgroundColor: 'white', padding: 3 }}>
+      <CardContent>
+      <Box sx={{ marginBottom: 3 }}></Box>
+
 
         {activeStep === steps.length ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you're finished
+            <p>personalDetails</p>
+              UserName-{personalDetails.name}<br/>
+              UserMailid-{personalDetails.email}<br/>
+              UserPhonenumber-{personalDetails.phone}<br/>
+              <p>Educationdetails</p>
+              userDegree-{educationDetails.degree}<br/>
+              Institution-{educationDetails.institution}<br/>
+              Year of passedout-{educationDetails.yearOfPassing}<br/>
+              <p>CourseDetails</p>
+              CourseName-{courseDetails.courseName}<br/>
+              Course date-{courseDetails.startDate}<br/>
+              CourseDuration-{courseDetails.duration}
+              
+              
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
@@ -233,40 +250,43 @@ export default function UserFormStepper() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              {steps[activeStep]}
-            </Typography>
+          
 
             <Box sx={{ mt: 2, mb: 2 }}>
               {activeStep === 0 && (
                 <>
+                <Box>
+                  <h1>Became An Advertiser</h1>
+                </Box>
+                <Typography  sx={{
+                  fontWeight:600
+                }}>FullName</Typography>
                   <TextField
-                    label="Name"
                     name="name"
                        value={personalDetails.name}
                     onChange={handlePersonalDetailsChange}
                           fullWidth
-                    sx={{ mb: 2 }}
+                          sx={{ mb: 2, backgroundColor: 'white' }}
                        error={!!errors.personalDetails.name}
                     helperText={errors.personalDetails.name}
                   />
+                  <Typography sx={{fontWeight:600}}>Email</Typography>
                   <TextField
-                    label="Email"
                     name="email"
                        value={personalDetails.email}
                     onChange={handlePersonalDetailsChange}
                        fullWidth
-                                sx={{ mb: 2 }}
+                       sx={{ mb: 2, backgroundColor: 'white' }}
                        error={!!errors.personalDetails.email}
                     helperText={errors.personalDetails.email}
                   />
+                          <Typography sx={{fontWeight:600}}>PhoneNumber</Typography>
                   <TextField
-                    label="Phone"
                     name="phone"
                            value={personalDetails.phone}
                     onChange={handlePersonalDetailsChange}
                     fullWidth
-                             sx={{ mb: 2 }}
+                    sx={{ mb: 2, backgroundColor: 'white' }}
                     error={!!errors.personalDetails.phone}
                               helperText={errors.personalDetails.phone}
                   />
@@ -275,33 +295,36 @@ export default function UserFormStepper() {
 
               {activeStep === 1 && (
                 <>
+                <Typography sx={{fontWeight:600}}>DegreeName</Typography>
                   <TextField
-                    label="Degree"
+          
                     name="degree"
                         value={educationDetails.degree}
                  onChange={handleEducationDetailsChange}
                        fullWidth
-                      sx={{ mb: 2 }}
+                       sx={{ mb: 2, backgroundColor: 'white' }}
                        error={!!errors.educationDetails.degree}
                           helperText={errors.educationDetails.degree}
                   />
+                      <Typography sx={{fontWeight:600}}>InstitutionName</Typography>
                   <TextField
-                     label="Institution"
+                    
                     name="institution"
                      value={educationDetails.institution}
                          onChange={handleEducationDetailsChange}
                         fullWidth
-                        sx={{ mb: 2 }}
+                        sx={{ mb: 2, backgroundColor: 'white' }}
                              error={!!errors.educationDetails.institution}
                     helperText={errors.educationDetails.institution}
                   />
+                  <Typography sx={{fontWeight:600}}>Year of passing</Typography>
                   <TextField
-                    label="Year of Passing"
+              
                           name="yearOfPassing"
                   value={educationDetails.yearOfPassing}
                          onChange={handleEducationDetailsChange}
                         fullWidth
-                    sx={{ mb: 2 }}
+                        sx={{ mb: 2, backgroundColor: 'white' }}
                           error={!!errors.educationDetails.yearOfPassing}
                     helperText={errors.educationDetails.yearOfPassing}
                   />
@@ -310,35 +333,37 @@ export default function UserFormStepper() {
 
               {activeStep === 2 && (
                 <>
+                <Typography sx={{fontWeight:600}}>CourseName</Typography>
                   <TextField
-                    label="Course Name"
+                  
                     name="courseName"
                             value={courseDetails.courseName}
                     onChange={handleCourseDetailsChange}
                     fullWidth
-                            sx={{ mb: 2 }}
+                    sx={{ mb: 2, backgroundColor: 'white' }}
                     error={!!errors.courseDetails.courseName}
                            helperText={errors.courseDetails.courseName}
                   />
+                     <Typography sx={{fontWeight:600}}>StartDate</Typography>
                   <TextField
-                    label="Start Date"
+                  
                           name="startDate"
                     type="date"
                     value={courseDetails.startDate}
                           onChange={handleCourseDetailsChange}
                     fullWidth
-                    sx={{ mb: 2 }}
+                    sx={{ mb: 2, backgroundColor: 'white' }}
                             InputLabelProps={{ shrink: true }}
                     error={!!errors.courseDetails.startDate}
                           helperText={errors.courseDetails.startDate}
                   />
+                  <Typography sx={{fontWeight:600}}>Duration</Typography>
                   <TextField
-                    label="Duration"
                     name="duration"
                     value={courseDetails.duration}
                             onChange={handleCourseDetailsChange}
                     fullWidth
-                    sx={{ mb: 2 }}
+                    sx={{ mb: 2, backgroundColor: 'white' }}
                            error={!!errors.courseDetails.duration}
                     helperText={errors.courseDetails.duration}
                   />
@@ -356,17 +381,26 @@ export default function UserFormStepper() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              {isStepOptional(activeStep) && (
+              {/* {isStepOptional(activeStep) && (
                 <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                   Skip
                 </Button>
-              )}
-              <Button onClick={handleNext}>
+              )} */}
+              <Button onClick={handleNext}
+              sx={{
+                  backgroundColor: 'darkblue',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: 'darkblue',},
+              }}
+              >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </Box>
           </React.Fragment>
         )}
+        </CardContent>
+        </Card>
       </Box>
     </Box>
   );
