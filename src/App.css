@@ -1,0 +1,76 @@
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: rgb(42, 152, 255);
+}
+
+form {
+  background-color: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px; 
+}
+
+h1 {
+  color: purple;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px; 
+}
+
+p {
+  font-size: 16px;
+  color: grey;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  background-color: purple;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: darkpurple; 
+}
+
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: purple;
+  outline: none;
+}
+
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
