@@ -381,11 +381,6 @@ export default function UserFormStepper() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              {/* {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Skip
-                </Button>
-              )} */}
               <Button onClick={handleNext}
               sx={{
                   backgroundColor: 'darkblue',
