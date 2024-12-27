@@ -9,14 +9,14 @@ const FinalOut = () => {
    console.log(personalDetails.phone);
    const educationDetails = JSON.parse(localStorage.getItem("EducationDetails"));
    console.log(educationDetails);
-   console.log(educationDetails.DegreeName,"degreename");
-   console.log(educationDetails.InstitutionName,"InstitutionName");
-   console.log(educationDetails.Yearofpassing);
+   console.log(educationDetails.DegreeName,"degree");
+   console.log(educationDetails.InstitutionName,"institution");
+   console.log(educationDetails.Yearofpassing,"yearOfPassing");
    const courseDetails = JSON.parse(localStorage.getItem("courseDetails"));
    console.log(courseDetails);
    console.log(courseDetails.courseName,"coursename");
-   console.log(courseDetails.startdate,"startdate");
-   console.log(courseDetails.institution,"duration");
+   console.log(courseDetails.startDate,"startDate");
+   console.log(courseDetails.duration,"duration");
   return (
     <div>
     <Card>
@@ -24,11 +24,11 @@ const FinalOut = () => {
        <h2>{personalDetails.name}</h2>
        <h2>{personalDetails.email}</h2>
        <h2>{personalDetails.phone}</h2>
-       <h2>{educationDetails.DegreeName}</h2>
-       <h2>{educationDetails.InstitutionName}</h2>
-       <h2>{educationDetails.Yearofpassing}</h2>
+       <h2>{educationDetails.degree}</h2>
+       <h2>{educationDetails.institution}</h2>
+       <h2>{educationDetails.yearOfPassing}</h2>
        <h2>{courseDetails.courseName}</h2>
-       <h2>{courseDetails.startdate}</h2>
+       <h2>{courseDetails.startDate}</h2>
        <h2>{courseDetails.duration}</h2>
        </CardContent></Card>
 
